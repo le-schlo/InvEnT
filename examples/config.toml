@@ -11,8 +11,8 @@ use_checkpoint = false  # if true read diversity filter from agent_file
 purge_memories = false  # if true purge all diversity filter memories after each stage
 
 ## Path to prior
-prior_file = "/REINVENT4/priors/reinvent.prior"
-agent_file = "/REINVENT4/priors/reinvent.prior"
+prior_file = "/tmp/InvEnT_dev/REINVENT4/priors/reinvent.prior"
+agent_file = "/tmp/InvEnT_dev/REINVENT4/priors/reinvent.prior"
 
 batch_size = 64          # network
 unique_sequences = true  # if true remove all duplicates raw sequences in each step
@@ -84,7 +84,7 @@ params.smarts = [
 name = "EnTdecker"
 weight = 1
 
-params.checkpoint_dir = "/Models/triplet_energy/"
+params.checkpoint_dir = "/tmp/InvEnT_dev/Models/triplet_energy"
 params.rdkit_2d_normalized = true
 params.target_column = "e_t"
 transform.type = "double_sigmoid"
@@ -100,9 +100,9 @@ transform.coef_se = 5
 name = "ChemProp_uvvis"
 weight = 1
 
-params.checkpoint4featuregen = "/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
-params.checkpoint_dir = "/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
-params.tmp_dir = "/tmp"
+params.checkpoint4featuregen = "/tmp/InvEnT_dev/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
+params.checkpoint_dir = "/tmp/InvEnT_dev/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
+params.tmp_dir = "/tmp/InvEnT_dev/tmp/uvvis_tmp"
 params.target_column = "peakwavs_max"
 params.rdkit_2d_normalized = false
 transform.type = "double_sigmoid"
@@ -112,14 +112,30 @@ transform.coef_div = 10
 transform.coef_si = 0.5
 transform.coef_se = 5
 
+ [[stage.scoring.component]]
+ [stage.scoring.component.excitedstate]
+ [[stage.scoring.component.excitedstate.endpoint]]
+ name = "Excited State lambda_max"
+ weight = 1
+ params.tmp_dir = '/tmp/mwfn_calcdir'
+ params.path_to_xtb = '/opt/miniconda/envs/InvEnT_dev/bin/xtb'
+ params.path_to_stda = '/home/employee/l_schl60/software/xtb4stda'
+ params.maximum_waiting_time = 180
+ params.use_stddft = false
+ params.use_gfnff = true  # Default is gnf2
+ params.target_property = 'lambda_max'
+ transform.type = "sigmoid"
+ transform.high = 400
+ transform.low = 300
+ transform.k = 1
 
  [[stage.scoring.component]]
  [stage.scoring.component.es_character]
  [[stage.scoring.component.es_character.endpoint]]
  name = "Overlap_quick"
  weight = 1
- params.path_to_xtb = ''
- params.path_to_multiwfn = ''
+ params.path_to_xtb = '/opt/miniconda/envs/InvEnT_dev/bin/xtb'
+ params.path_to_multiwfn = '/home/employee/l_schl60/software/Multiwfn_3.7_bin_Linux_noGUI/Multiwfn'
  params.calculation_mode = 'multiwfn_quick'
  params.aggregation_mode = 'formula'
  params.dir4tempfiles = '/tmp/mwfn_calcdir'
