@@ -1,0 +1,1 @@
+Data in validation_data.csv is taken from: Montalti, M.; Credi, A.; Prodi, L.; Gandolfi, M. T. Handbook of Photochemistry; CRC Press, 2006.
