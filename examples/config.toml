@@ -6,13 +6,13 @@ json_out_config = "_staged_learning.json"  # write this TOML to JSON
 
 [parameters]
 
-summary_csv_prefix = "/tmp/staged_learning_reinvent"  # prefix for the CSV file
+summary_csv_prefix = "/tmp/InvEnT_exploration"  # prefix for the CSV file
 use_checkpoint = false  # if true read diversity filter from agent_file
 purge_memories = false  # if true purge all diversity filter memories after each stage
 
 ## Path to prior
-prior_file = "/tmp/InvEnT_dev/REINVENT4/priors/reinvent.prior"
-agent_file = "/tmp/InvEnT_dev/REINVENT4/priors/reinvent.prior"
+prior_file = "/tmp/InvEnT/REINVENT4/priors/reinvent.prior"
+agent_file = "/tmp/InvEnT/REINVENT4/priors/reinvent.prior"
 
 batch_size = 64          # network
 unique_sequences = true  # if true remove all duplicates raw sequences in each step
@@ -57,21 +57,7 @@ name = "Unwanted SMARTS"  # user chosen name for output
 weight = 1  # weight to fine-tune the relevance of this component
 
 params.smarts = [
-   "[*;r3]",
-   "[*;r4]",
-   "[*;r8]",
-   "[*;r9]",
-   "[*;r10]",
-   "[*;r11]",
-   "[*;r12]",
-   "[*;r13]",
-   "[*;r14]",
-   "[*;r15]",
-   "[*;r16]",
-   "[*;r17]",
-   "[#7!nN!H0]",
    "[N;X3]",
-   "[CH2]",
    "[#6]=O",
    "C=C",
    "[OH]",
@@ -84,7 +70,7 @@ params.smarts = [
 name = "EnTdecker"
 weight = 1
 
-params.checkpoint_dir = "/tmp/InvEnT_dev/Models/triplet_energy"
+params.checkpoint_dir = "/tmp/InvEnT/Models/triplet_energy"
 params.rdkit_2d_normalized = true
 params.target_column = "e_t"
 transform.type = "double_sigmoid"
@@ -100,9 +86,9 @@ transform.coef_se = 5
 name = "ChemProp_uvvis"
 weight = 1
 
-params.checkpoint4featuregen = "/tmp/InvEnT_dev/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
-params.checkpoint_dir = "/tmp/InvEnT_dev/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
-params.tmp_dir = "/tmp/InvEnT_dev/tmp/uvvis_tmp"
+params.checkpoint4featuregen = "/tmp/InvEnT/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
+params.checkpoint_dir = "/tmp/InvEnT/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
+params.tmp_dir = "/tmp/InvEnT/tmp/uvvis_tmp"
 params.target_column = "peakwavs_max"
 params.rdkit_2d_normalized = false
 transform.type = "double_sigmoid"
