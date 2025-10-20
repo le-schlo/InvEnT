@@ -68,11 +68,11 @@ This set of parameters is optional and can be used to increase the diversity of 
 
 - ###### Triplet energy prediction
     The [EnTdecker](https://github.com/le-schlo/EnTdecker) model is used to predict the triplet energy of generated molecules as described in this [paper](https://pubs.acs.org/doi/10.1021/jacs.4c01352).
-  - `name`: Set to `EnTdecker`
+  - `name`: Set to `"EnTdecker"`
   - `weight`: set weight of the component in the overall score.
   - `params.checkpoint_dir`: Path to the directory containing the pretrained EnTdecker model. A downloaded model can be found in `Models/triplet_energy/model_42.pt` 
-  - `params.rdkit_2d_normalized`: Set to `True` to use normalized 2D descriptors. Required for the EnTdecker model.
-  - `params.target_column`: Set to `e_t`. Required for the EnTdecker model.
+  - `params.rdkit_2d_normalized`: Set to `true` to use normalized 2D descriptors. Required for the EnTdecker model.
+  - `params.target_column`: Set to `"e_t"`. Required for the EnTdecker model.
 - ###### ML-predicted absorption wavelength prediction
 
 
