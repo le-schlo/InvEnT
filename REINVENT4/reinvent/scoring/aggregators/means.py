@@ -1,9 +1,9 @@
 """Compute weighted means"""
 
-__all__ = ["arithmetic_mean", "geometric_mean", "custom_product", "custom_sum"]
+__all__ = ["arithmetic_mean", "geometric_mean", "custom_product", "custom_sum", "hypervolume", "prod_plus_hypervolume"]
 from typing import List, Literal, Tuple
 import logging
-
+from reinvent.scoring.aggregators.hypervolume import HypervolumeCalculator
 import numpy as np
 
 
@@ -46,6 +46,17 @@ def _aggregate(
         scores = np.maximum(scores, 1e-8)
         sum_weights = np.maximum(np.nansum(weights, axis=0), 1e-8)
         result = np.nanprod(scores ** (weights / sum_weights), axis=0)
+    elif mode == "hypervolume":
+        #Only works with scaled scores between 0 and 1 if the target is to maximize the score and equal weights!
+        result = HypervolumeCalculator(mode="hypervolume_to_dynamic_reference", scores=scores).compute_hypervolume()
+    elif mode == "prod_plus_hv":
+        scores = np.maximum(scores, 1e-8)
+        sum_weights = np.maximum(np.nansum(weights, axis=0), 1e-8)
+        prod = np.nanprod(scores ** (weights / sum_weights), axis=0)
+        # Only works with scaled scores between 0 and 1 if the target is to maximize the score and equal weights!
+        scaled_scores = scores*(weights / sum_weights)
+        hv = HypervolumeCalculator(mode="hypervolume_to_dynamic_reference", scores=scaled_scores).compute_hypervolume()
+        result = prod + hv
     else:
         raise ValueError(f"Invalid mode '{mode}'")
     return result
@@ -78,3 +89,25 @@ def geometric_mean(all_scores: List[Tuple[np.ndarray, float]]) -> np.ndarray:
 
 
 custom_product = geometric_mean
+
+def hypervolume(all_scores: List[Tuple[np.ndarray, float]]) -> np.ndarray:
+    """Compute the hypervolume
+
+    The weights will be normalized.
+
+    :param all_scores: a list of scores and weights
+    :return: aggregated scores
+    """
+    return _aggregate(all_scores, mode="hypervolume")
+
+def prod_plus_hypervolume(all_scores: List[Tuple[np.ndarray, float]]) -> np.ndarray:
+    """Compute the hypervolume
+
+    The weights will be normalized.
+
+    :param all_scores: a list of scores and weights
+    :return: aggregated scores
+    """
+    return _aggregate(all_scores, mode="prod_plus_hv")
+
+prod_hv = prod_plus_hypervolume

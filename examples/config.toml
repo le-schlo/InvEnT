@@ -1,18 +1,18 @@
 #
 run_type = "staged_learning"
 device = "cuda:0"  # set torch device e.g. "cpu"
-tb_logdir = "/tmp/tb_reinvent"  # name of the TensorBoard logging directory
+tb_logdir = "tb_reinvent"  # name of the TensorBoard logging directory
 json_out_config = "_staged_learning.json"  # write this TOML to JSON
 
 [parameters]
 
-summary_csv_prefix = "/tmp/InvEnT_exploration"  # prefix for the CSV file
+summary_csv_prefix = "InvEnT_exploration"  # prefix for the CSV file
 use_checkpoint = false  # if true read diversity filter from agent_file
 purge_memories = false  # if true purge all diversity filter memories after each stage
 
 ## Path to prior
-prior_file = "/tmp/InvEnT/REINVENT4/priors/reinvent.prior"
-agent_file = "/tmp/InvEnT/REINVENT4/priors/reinvent.prior"
+prior_file = "/InvEnT/REINVENT4/priors/reinvent.prior"
+agent_file = "/InvEnT/REINVENT4/priors/reinvent.prior"
 
 batch_size = 64          # network
 unique_sequences = true  # if true remove all duplicates raw sequences in each step
@@ -70,7 +70,7 @@ params.smarts = [
 name = "EnTdecker"
 weight = 1
 
-params.checkpoint_dir = "/tmp/InvEnT/Models/triplet_energy"
+params.checkpoint_dir = "/InvEnT/Models/triplet_energy"
 params.rdkit_2d_normalized = true
 params.target_column = "e_t"
 transform.type = "double_sigmoid"
@@ -86,9 +86,9 @@ transform.coef_se = 5
 name = "ChemProp_uvvis"
 weight = 1
 
-params.checkpoint4featuregen = "/tmp/InvEnT/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
-params.checkpoint_dir = "/tmp/InvEnT/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
-params.tmp_dir = "/tmp/InvEnT/tmp/uvvis_tmp"
+params.checkpoint4featuregen = "/InvEnT/Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0"
+params.checkpoint_dir = "/InvEnT/Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0"
+params.tmp_dir = "/InvEnT/tmp/uvvis_tmp"
 params.target_column = "peakwavs_max"
 params.rdkit_2d_normalized = false
 transform.type = "double_sigmoid"
@@ -104,8 +104,8 @@ transform.coef_se = 5
  name = "Excited State lambda_max"
  weight = 1
  params.tmp_dir = '/tmp/mwfn_calcdir'
- params.path_to_xtb = '/opt/miniconda/envs/InvEnT_dev/bin/xtb'
- params.path_to_stda = '/home/employee/l_schl60/software/xtb4stda'
+ params.path_to_xtb = 'PATH_TO_DIR/xtb'
+ params.path_to_stda = 'PATH_TO_DIR/xtb4stda'
  params.maximum_waiting_time = 180
  params.use_stddft = false
  params.use_gfnff = true  # Default is gnf2
@@ -120,8 +120,8 @@ transform.coef_se = 5
  [[stage.scoring.component.es_character.endpoint]]
  name = "Overlap_quick"
  weight = 1
- params.path_to_xtb = '/opt/miniconda/envs/InvEnT_dev/bin/xtb'
- params.path_to_multiwfn = '/home/employee/l_schl60/software/Multiwfn_3.7_bin_Linux_noGUI/Multiwfn'
+ params.path_to_xtb = 'PATH_TO_DIR/xtb'
+ params.path_to_multiwfn = '/PATH_TO_DIR/Multiwfn_3.7_bin_Linux_noGUI/Multiwfn'
  params.calculation_mode = 'multiwfn_quick'
  params.aggregation_mode = 'formula'
  params.dir4tempfiles = '/tmp/mwfn_calcdir'
