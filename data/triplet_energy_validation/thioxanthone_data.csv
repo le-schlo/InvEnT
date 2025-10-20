@@ -1,0 +1,12 @@
+ID,SMILES,triplet_energy(kcal/mol)
+1,COc1ccc2c(=O)c3ccc(OC)cc3sc2c1,72.124
+2,O=c1c2ccc(F)cc2sc2cc(F)ccc12,71.63
+3,COc1ccc2c(=O)c3ccccc3sc2c1,70.148
+4,O=c1c2ccccc2sc2cc(F)ccc12,69.654
+5,O=c1c2ccccc2sc2ccccc12,67.678
+6,O=c1c2ccccc2sc2ccc(F)cc12,64.961
+7,COc1cccc2c(=O)c3ccccc3sc12,65.949
+8,CC(C)c1ccc2sc3ccccc3c(=O)c2c1,66.69
+9,COc1ccc2sc3ccccc3c(=O)c2c1,62.244
+10,COc1ccc2sc3ccc(F)cc3c(=O)c2c1,59.774
+11,COc1ccc2sc3ccc(OC)cc3c(=O)c2c1,58.045

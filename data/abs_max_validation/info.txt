@@ -1,0 +1,3 @@
+The data in experimental_data.csv is taken from DOI	https://doi.org/10.1039/D1SC05677H
+Data in thioxanthone_data.csv is taken from https://doi.org/10.1021/jacs.0c05069
+Data in indole_data.csv is taken from https://doi.org/10.1039/D0CP06710E

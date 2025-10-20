@@ -1,0 +1,12 @@
+ID,SMILES,abs_max(nm)
+1,COc1ccc2c(=O)c3ccc(OC)cc3sc2c1,354
+2,O=c1c2ccc(F)cc2sc2cc(F)ccc12,362
+3,COc1ccc2c(=O)c3ccccc3sc2c1,367
+4,O=c1c2ccccc2sc2cc(F)ccc12,370
+5,O=c1c2ccccc2sc2ccccc12,380
+6,O=c1c2ccccc2sc2ccc(F)cc12,388
+7,COc1cccc2c(=O)c3ccccc3sc12,385
+8,CC(C)c1ccc2sc3ccccc3c(=O)c2c1,385
+9,COc1ccc2sc3ccccc3c(=O)c2c1,399
+10,COc1ccc2sc3ccc(F)cc3c(=O)c2c1,408
+11,COc1ccc2sc3ccc(OC)cc3c(=O)c2c1,415
