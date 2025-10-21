@@ -137,5 +137,12 @@ This set of parameters is optional and can be used to increase the diversity of 
       |:------------------|:-------------------------------------------------------------|:-------------------------|
       | $S_{\text{part}}$ | **1** if $O_{S_1} < $`params.S_overlap` <br>**0** otherwise. | **CT** (Charge Transfer) |
       | $T_{\text{part}}$ | **1** if $O_{T_1} > $`params.T_overlap` <br>**0** otherwise. | **LE** (Locally excited) |
-    - The score 
 
+- ###### Conjugation
+    Computes conjugation in molecules 
+  - `name`: Set to name for scoring component, _e.g._, `"Conjugation"`
+  - `weight`: set weight of the component in the overall score.
+  - `params.mode`: Choose between `fraction` and `largest_conjugated_fragment`. 
+    - `fraction`: Score is computed as the fraction of conjugated atoms over total number of atoms.
+    - `largest_conjugated_fragment`: Score is computed based on the size of the largest conjugated fragment.
+  - `params.exclude_split_system`: Set to `true` to exclude molecules with disconnected conjugated structures.
