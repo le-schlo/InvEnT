@@ -93,15 +93,16 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.use_stddft`: Set to `false` to use stda instead of stddft for excited state calculations.
   - `params.use_gfnff`: Set to `true` to use gfn-ff for geometry optimization instead of gfn2.
   - `params.target_property`: Set to `lambda_max`.
-- _**Excited state character**_ <br />
-    Computes the HOMO-LUMO overlap and estimates nature of excited state (charge-transfer or local excitation) using xtb and Multiwfn   
-  - `name`: Set to name for scoring component, _e.g._, `"FMO analysis"`
-  - `weight`: set weight of the component in the overall score.
-  - `params.dir4tempfiles`: Path to a temporary directory for storing intermediate files.
+- **Excited state character** <br />
+    Computes the HOMO-LUMO overlap and estimates the nature of the excited state (CT or LE) using **xtb** and **Multiwfn**.
+  - `name`: Set to `"Overlap_quick"`.
+  - `weight`: Set weight of the component.
+  - `params.dir4tempfiles`: Path to a temporary directory.
   - `params.path_to_multiwfn`: Path to the Multiwfn binary.
-  - `params.calculation_mode`: Choose between `multiwfn` and `multiwfn_quick`. In `multiwfn` both singlet and triplet states are optimized for computing the FMOs, while in `multiwfn_quick` only the singlet geometry is used to compute the FMOs.
-  - `params.use_gfn2`: Set to `true` to optimize geometries with GFN2-xTB, if set to `false` optimization is performed with GFN-FF. 
-  - `params.aggregation_mode`: Choose between `formula` and `threshold`.
+  - `params.calculation_mode`: Set to `multiwfn_quick` (only singlet geometry used for FMOs) or `multiwfn` (both singlet and triplet states optimized).
+  - `params.use_gfn2`: Set to `false` (optimization uses GFN-FF).
+  - `params.aggregation_mode`: Choose between `formula` (weighted sum) and `threshold` (binary score).
+
     - `formula`:
        The **`score`** is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$):
       $$\text{score} = S_{\text{part}} + T_{\text{part}}$$
@@ -114,23 +115,19 @@ This set of parameters is optional and can be used to increase the diversity of 
       | $T_{\text{overlap}}$, $T_{\text{distance}}$ | `params.T_overlap`, `params.T_distance` | Weights for the triplet overlap value ($O_{T_1}$) and distance ($D_{T_1}$) of HOMO and LUMO center. |
 
     - `threshold`:
-      The `score` is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**:
-      $$
-      \text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}
-      $$
-
+      The **`score`** is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**:
+      $$\text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}$$
       The binary parts are determined by the following conditions:
 
-      | Component         | Condition                                                    | Character Represented    |
-      |:------------------|:-------------------------------------------------------------|:-------------------------|
-      | $S_{\text{part}}$ | 1 if $O_{S_1} < $`params.S_overlap` <br>0 otherwise. | CT (Charge Transfer) |
-      | $T_{\text{part}}$ | 1 if $O_{T_1} > $`params.T_overlap` <br>0 otherwise. | LE (Locally excited) |
+      | Component | Condition | Character Represented |
+      | :--- | :--- | :--- |
+      | $S_{\text{part}}$ | **1** if $O_{S_1} < \text{params.S\_overlap}$ <br>**0** otherwise. | **CT** (Charge Transfer) |
+      | $T_{\text{part}}$ | **1** if $O_{T_1} > \text{params.T\_overlap}$ <br>**0** otherwise. | **LE** (Locally excited) |
 
-- _**Conjugation**_ <br />
-    Computes conjugation in molecules 
-  - `name`: Set to name for scoring component, _e.g._, `"Conjugation"`
-  - `weight`: set weight of the component in the overall score.
-  - `params.mode`: Choose between `fraction` and `largest_conjugated_fragment`. 
-    - `fraction`: Score is computed as the fraction of conjugated atoms over total number of atoms.
-    - `largest_conjugated_fragment`: Score is computed based on the size of the largest conjugated fragment.
+- **Conjugation** <br />
+    Computes the degree of conjugation in molecules.
+  - `name`: Set to `"Conjugation"`.
+  - `weight`: Set weight of the component.
+  - `params.mode`: Choose between **`fraction`** (fraction of conjugated atoms) and `largest_conjugated_fragment` (size of the largest fragment).
   - `params.exclude_split_system`: Set to `true` to exclude molecules with disconnected conjugated structures.
+  - **Transformation**: Uses `sigmoid` to favor molecules with a conjugation fraction around **0.85** and penalize those around **0.25** or lower.
