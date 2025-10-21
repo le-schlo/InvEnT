@@ -103,27 +103,15 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.use_gfn2`: Set to `true` to optimize geometries with GFN2-xTB, if set to `false` optimization is performed with GFN-FF. 
   - `params.aggregation_mode`: Choose between `formula` and `threshold`.
     - `formula`:
-       The `score` is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$):
+       The **`score`** is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$):
+      $$\text{score} = S_{\text{part}} + T_{\text{part}}$$
+      The parts are calculated using the following parameters:
 
-      $$
-      score = S_{\text{part}} + T_{\text{part}}
-      $$
-
-      Where the parts are defined as:
-
-      $$
-      S_{\text{part}} = w_{\text{singlet}} \cdot ((S_{\text{overlap_factor}} \cdot O_{S_1}) + (S_{\text{distance_factor}} \cdot D_{S_1}))
-      $$
-            
-      $$
-      T_{\text{part}} = w_{\text{triplet}} \cdot ((T_{\text{overlap_factor}} \cdot O_{T_1}) + (T_{\text{distance_factor}} \cdot D_{T_1}))
-      $$
-            
-      | Variable                                   | Parameter in config file                       | Description                                                                 |
-      |:-------------------------------------------|------------------------------------------------|:----------------------------------------------------------------------------|
-      | $w_{\text{singlet}}$, $w_{\text{triplet}}$ | `params.Singlet_param`, `params.Triplet_param` | Weights for the overall Singlet and Triplet contributions.                  |
-      | $S_{\text{overlap_factor}}$, $D_{S_1}$     | `params.S_overlap`, `params.S_distance`        | Weights for the singlet overlap value and distance of HOMO und LUMO center. |
-      | $T_{\text{overlap_factor}}$, $D_{T_1}$     | `params.T_overlap`, `params.T_distance`        | Weights for the triplet overlap value and distance of HOMO und LUMO center. |
+      | Variable | Parameter in config file | Description |
+      | :--- | :--- | :--- |
+      | $w_{\text{singlet}}$, $w_{\text{triplet}}$ | `params.Singlet_param`, `params.Triplet_param` | Weights for the overall Singlet and Triplet contributions. |
+      | $S_{\text{overlap}}$, $S_{\text{distance}}$ | `params.S_overlap`, `params.S_distance` | Weights for the singlet overlap value ($O_{S_1}$) and distance ($D_{S_1}$) of HOMO and LUMO center. |
+      | $T_{\text{overlap}}$, $T_{\text{distance}}$ | `params.T_overlap`, `params.T_distance` | Weights for the triplet overlap value ($O_{T_1}$) and distance ($D_{T_1}$) of HOMO and LUMO center. |
 
     - `threshold`:
       The `score` is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**:
