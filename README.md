@@ -66,14 +66,14 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.smarts`: List of SMARTS strings defining unwanted substructures.
 
 
-- ###### Triplet energy prediction
+- _Triplet energy prediction_ <br />
     The [EnTdecker](https://github.com/le-schlo/EnTdecker) model is used to predict the triplet energy of generated molecules as described in this [paper](https://pubs.acs.org/doi/10.1021/jacs.4c01352).
   - `name`: Set to name for scoring component, _e.g._, `"EnTdecker"`
   - `weight`: set weight of the component in the overall score.
   - `params.checkpoint_dir`: Path to the directory containing the pretrained EnTdecker model. A downloaded model can be found in `Models/triplet_energy/model_42.pt` 
   - `params.rdkit_2d_normalized`: Set to `true` to use normalized 2D descriptors. Required for the EnTdecker model.
   - `params.target_column`: Set to `"e_t"`. Required for the EnTdecker model.
-- ###### ML-predicted absorption wavelength prediction
+- _ML-predicted absorption wavelength prediction_ <br />
   The multi-fidelity model described by Greenman et al. [paper](https://doi.org/10.1039/D1SC05677H) is used to predict the maximum absorption wavelength of generated molecules.
   - `name`: Set to name for scoring component, _e.g._, `"ChemProp_uvvis"`
   - `weight`: set weight of the component in the overall score.
@@ -82,7 +82,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.tmp_dir`: Path to a temporary directory for storing intermediate files.
   - `params.target_column`: Set to `"peakwavs_max"`.
   - `params.rdkit_2d_normalized`: Set to `false`.
-- ###### Semi-empirical absorption wavelength prediction
+- _Semi-empirical absorption wavelength prediction_ <br />
   The semi-empirical excited state calculation component uses xtb and stda to calculate the maximum absorption wavelength of generated molecules.
   - `name`: Set to name for scoring component, _e.g._, `"SQM_lambda_max"`
   - `weight`: set weight of the component in the overall score.
@@ -93,7 +93,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.use_stddft`: Set to `false` to use stda instead of stddft for excited state calculations.
   - `params.use_gfnff`: Set to `true` to use gfn-ff for geometry optimization instead of gfn2.
   - `params.target_property`: Set to `lambda_max`.
-- ###### Excited state character
+- _Excited state character_ <br />
     Computes the HOMO-LUMO overlap and estimates nature of excited state (charge-transfer or local excitation) using xtb and Multiwfn   
   - `name`: Set to name for scoring component, _e.g._, `"FMO analysis"`
   - `weight`: set weight of the component in the overall score.
@@ -138,7 +138,7 @@ This set of parameters is optional and can be used to increase the diversity of 
       | $S_{\text{part}}$ | **1** if $O_{S_1} < $`params.S_overlap` <br>**0** otherwise. | **CT** (Charge Transfer) |
       | $T_{\text{part}}$ | **1** if $O_{T_1} > $`params.T_overlap` <br>**0** otherwise. | **LE** (Locally excited) |
 
-- ###### Conjugation
+- _Conjugation_ <br />
     Computes conjugation in molecules 
   - `name`: Set to name for scoring component, _e.g._, `"Conjugation"`
   - `weight`: set weight of the component in the overall score.
