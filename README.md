@@ -68,14 +68,74 @@ This set of parameters is optional and can be used to increase the diversity of 
 
 - ###### Triplet energy prediction
     The [EnTdecker](https://github.com/le-schlo/EnTdecker) model is used to predict the triplet energy of generated molecules as described in this [paper](https://pubs.acs.org/doi/10.1021/jacs.4c01352).
-  - `name`: Set to `"EnTdecker"`
+  - `name`: Set to name for scoring component, _e.g._, `"EnTdecker"`
   - `weight`: set weight of the component in the overall score.
   - `params.checkpoint_dir`: Path to the directory containing the pretrained EnTdecker model. A downloaded model can be found in `Models/triplet_energy/model_42.pt` 
   - `params.rdkit_2d_normalized`: Set to `true` to use normalized 2D descriptors. Required for the EnTdecker model.
   - `params.target_column`: Set to `"e_t"`. Required for the EnTdecker model.
 - ###### ML-predicted absorption wavelength prediction
+  The multi-fidelity model described by Greenman et al. [paper](https://doi.org/10.1039/D1SC05677H) is used to predict the maximum absorption wavelength of generated molecules.
+  - `name`: Set to name for scoring component, _e.g._, `"ChemProp_uvvis"`
+  - `weight`: set weight of the component in the overall score.
+  - `params.checkpoint4featuregen`: Path to ensemble of ChemProp models used for predicting S1 excitation energy. The models used in this work can be found in `Models/uvvis/lambda_max_abs_wb97xd3/chemprop/all_wb97xd3/production/fold_0`
+  - `params.checkpoint_dir`: Path to the ChemProp model checkpoint used for the low-fidelity prediction. The model used in this work can be found in `Models/uvvis/lambda_max_abs/chemprop_tddft/combined/production/fold_0`
+  - `params.tmp_dir`: Path to a temporary directory for storing intermediate files.
+  - `params.target_column`: Set to `"peakwavs_max"`.
+  - `params.rdkit_2d_normalized`: Set to `false`.
+- ###### Semi-empirical absorption wavelength prediction
+  The semi-empirical excited state calculation component uses xtb and stda to calculate the maximum absorption wavelength of generated molecules.
+  - `name`: Set to name for scoring component, _e.g._, `"SQM_lambda_max"`
+  - `weight`: set weight of the component in the overall score.
+  - `params.tmp_dir`: Path to a temporary directory for storing intermediate files.
+  - `params.path_to_xtb`: Path to the directory containing the xtb binary.
+  - `params.path_to_stda`: Path to the directory containing the xtb4stda binary.
+  - `params.maximum_waiting_time`: Maximum waiting time for the geometry optimization in seconds.
+  - `params.use_stddft`: Set to `false` to use stda instead of stddft for excited state calculations.
+  - `params.use_gfnff`: Set to `true` to use gfn-ff for geometry optimization instead of gfn2.
+  - `params.target_property`: Set to `lambda_max`.
+- ###### Excited state character
+    Computes the HOMO-LUMO overlap and estimates nature of excited state (charge-transfer or local excitation) using xtb and Multiwfn   
+  - `name`: Set to name for scoring component, _e.g._, `"FMO analysis"`
+  - `weight`: set weight of the component in the overall score.
+  - `params.dir4tempfiles`: Path to a temporary directory for storing intermediate files.
+  - `params.path_to_multiwfn`: Path to the Multiwfn binary.
+  - `params.calculation_mode`: Choose between `multiwfn` and `multiwfn_quick`. In `multiwfn` both singlet and triplet states are optimized for computing the FMOs, while in `multiwfn_quick` only the singlet geometry is used to compute the FMOs.
+  - `params.use_gfn2`: Set to `true` to optimize geometries with GFN2-xTB, if set to `false` optimization is performed with GFN-FF. 
+  - `params.aggregation_mode`: Choose between `formula` and `threshold`.
+    - `formula`:
+       The `score` is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$):
 
+      $$
+      score = S_{\text{part}} + T_{\text{part}}
+      $$
 
+      Where the parts are defined as:
 
+      $$
+      S_{\text{part}} = w_{\text{singlet}} \cdot ((S_{\text{overlap_factor}} \cdot O_{S_1}) + (S_{\text{distance_factor}} \cdot D_{S_1}))
+      $$
+            
+      $$
+      T_{\text{part}} = w_{\text{triplet}} \cdot ((T_{\text{overlap_factor}} \cdot O_{T_1}) + (T_{\text{distance_factor}} \cdot D_{T_1}))
+      $$
+            
+      | Variable                                   | Parameter in config file                       | Description                                                                 |
+      |:-------------------------------------------|------------------------------------------------|:----------------------------------------------------------------------------|
+      | $w_{\text{singlet}}$, $w_{\text{triplet}}$ | `params.Singlet_param`, `params.Triplet_param` | Weights for the overall Singlet and Triplet contributions.                  |
+      | $S_{\text{overlap_factor}}$, $D_{S_1}$     | `params.S_overlap`, `params.S_distance`        | Weights for the singlet overlap value and distance of HOMO und LUMO center. |
+      | $T_{\text{overlap_factor}}$, $D_{T_1}$     | `params.T_overlap`, `params.T_distance`        | Weights for the triplet overlap value and distance of HOMO und LUMO center. |
 
-#ToDo: Describe transform type functions and params
+    - `threshold`:
+      The `score` is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**:
+      $$
+      \text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}
+      $$
+
+      The binary parts are determined by the following conditions:
+
+      | Component         | Condition                                                    | Character Represented    |
+      |:------------------|:-------------------------------------------------------------|:-------------------------|
+      | $S_{\text{part}}$ | **1** if $O_{S_1} < $`params.S_overlap` <br>**0** otherwise. | **CT** (Charge Transfer) |
+      | $T_{\text{part}}$ | **1** if $O_{T_1} > $`params.T_overlap` <br>**0** otherwise. | **LE** (Locally excited) |
+    - The score 
+
