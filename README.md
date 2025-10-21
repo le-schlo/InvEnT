@@ -119,10 +119,10 @@ This set of parameters is optional and can be used to increase the diversity of 
       $$\text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}$$ <br />
       The binary parts are determined by the following conditions:
 
-      | Component | Condition                                                    | Character Represented |
-      | :--- |:-------------------------------------------------------------| :--- |
-      | $S_{\text{part}}$ | 1 if $O_{S_1}$ < $\text{params.S\_overlap}$ <br>0 otherwise. | CT (Charge Transfer) |
-      | $T_{\text{part}}$ | 1 if $O_{T_1}$ > $\text{params.T\_overlap}$ <br>0 otherwise. | LE (Locally excited) |
+      | Component | Condition                                             | Character Represented |
+      | :--- |:------------------------------------------------------| :--- |
+      | $S_{\text{part}}$ | 1 if $O_{S_1}$ < `params.S_overlap` <br>0 otherwise.    | CT (Charge Transfer) |
+      | $T_{\text{part}}$ | 1 if $O_{T_1}$ > `params.T_overlap` <br>0 otherwise.    | LE (Locally excited) |
 
 - **Conjugation** <br />
     Computes the degree of conjugation in molecules.
