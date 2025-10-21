@@ -59,7 +59,7 @@ This set of parameters is optional and can be used to increase the diversity of 
 - `type`: Choose the aggregation method for the individual components of the reward function. Available options are `custom_product`, `custom_sum`, `hypervolume`, and `prod_plus_hypervolume`. For the aggregation methods using the hypervolume its important that the individual scoring components are scaled between 0 and 1 and that all components have the same weight.
 
 ##### Scoring components
-- ###### Custom alerts
+- **Custom alerts** <br />
     The custom alerts component can be used to penalize molecules containing unwanted substructures.
   - `name`: Set to `Unwanted SMARTS`
   - `weight`: weight to fine-tune the relevance of this component
