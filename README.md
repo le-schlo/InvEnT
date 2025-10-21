@@ -29,3 +29,11 @@ To run the model execute
 reinvent -l logging.log config.toml
 ```
 An example config file with all run parameters can be found in `examples/config.toml`. A detailed description of all relevant parameters can be found in `examples/README.md`.
+
+## Data
+The `data` directory contains datasets for validating the models used in this work. 
+
+## Citation
+```
+TBA
+```

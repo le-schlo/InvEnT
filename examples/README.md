@@ -1,12 +1,12 @@
 ### Structure in config.toml
 The config file is structured in different sections. The parameters relevant for this work are described. Information about other parameters and options can be found in the repository of [REINVENT4](https://github.com/MolecularAI/REINVENT4/tree/main).
 #### General settings
-- `run_type`: Set to `staged_learning` to run the inverse design for molecular generation guided by reward function and `transfer_learning` for training an agent to generate molecules according to a set of input molecules (see section prior training).
+- `run_type`: Set to `staged_learning` to run the inverse design for molecular generation guided by reward function.
 - `device`: Set to `cpu` or `cuda:0` depending on the available hardware.
 
 #### Parameters section
 - `summary_csv_prefix` : Prefix for the summary csv file containing the results of the run.
-- `prior_file`: Path to a pretrained prior model.
+- `prior_file`: Path to a pretrained prior model. The priors used in this work can be found in the `REINVENT4/priors/` directory. For this work the `reinvent.prior`, `reinvent_zinc.prior`, and `reinvent_tadf.prior` models were used.
 - `agent_file`: Path to the pretrained agent model. Generally, prior and agent refer to the same model, however, prior is a model that is trained to generate molecules according to some training distribution and agent is a fine-tuned model that is trained to generate molecules according to some property distribution defined by the reward function.
 - `batch_size`: Number of molecules generated per batch.
 
@@ -100,6 +100,3 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.exclude_split_system`: Set to `true` to exclude molecules with disconnected conjugated structures.
 
 To define the target values for each scoring component, the corresponding transformation functions have to be set by using the `transforms` keywords in the config file.
-
-## Train a prior model
-To train a prior model for transfer learning or as a base model 
