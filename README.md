@@ -104,8 +104,8 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `params.aggregation_mode`: Choose between `formula` (weighted sum) and `threshold` (binary score).
 
     - `formula`:
-       The **`score`** is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$):
-      $$\text{score} = S_{\text{part}} + T_{\text{part}}$$
+       The `score` is the sum of the Singlet part ($S_{\text{part}}$) and the Triplet part ($T_{\text{part}}$): <br />
+      $$\text{score} = S_{\text{part}} + T_{\text{part}}$$ <br />
       The parts are calculated using the following parameters:
 
       | Variable | Parameter in config file | Description |
@@ -115,14 +115,14 @@ This set of parameters is optional and can be used to increase the diversity of 
       | $T_{\text{overlap}}$, $T_{\text{distance}}$ | `params.T_overlap`, `params.T_distance` | Weights for the triplet overlap value ($O_{T_1}$) and distance ($D_{T_1}$) of HOMO and LUMO center. |
 
     - `threshold`:
-      The **`score`** is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**:
-      $$\text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}$$
+      The `score` is a weighted sum of two binary components ($S_{\text{part}}$ and $T_{\text{part}}$), which are either **0** or **1**: <br />
+      $$\text{score} = w_{\text{singlet}} \cdot S_{\text{part}} + w_{\text{triplet}} \cdot T_{\text{part}}$$ <br />
       The binary parts are determined by the following conditions:
 
       | Component | Condition | Character Represented |
       | :--- | :--- | :--- |
-      | $S_{\text{part}}$ | **1** if $O_{S_1} < \text{params.S\_overlap}$ <br>**0** otherwise. | **CT** (Charge Transfer) |
-      | $T_{\text{part}}$ | **1** if $O_{T_1} > \text{params.T\_overlap}$ <br>**0** otherwise. | **LE** (Locally excited) |
+      | $S_{\text{part}}$ | 1 if $O_{S_1} < \text{params.S\_overlap}$ <br>0 otherwise. | CT (Charge Transfer) |
+      | $T_{\text{part}}$ | 1 if $O_{T_1} > \text{params.T\_overlap}$ <br>0 otherwise. | LE (Locally excited) |
 
 - **Conjugation** <br />
     Computes the degree of conjugation in molecules.
