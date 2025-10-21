@@ -135,8 +135,8 @@ This set of parameters is optional and can be used to increase the diversity of 
 
       | Component         | Condition                                                    | Character Represented    |
       |:------------------|:-------------------------------------------------------------|:-------------------------|
-      | $S_{\text{part}}$ | **1** if $O_{S_1} < $`params.S_overlap` <br>**0** otherwise. | **CT** (Charge Transfer) |
-      | $T_{\text{part}}$ | **1** if $O_{T_1} > $`params.T_overlap` <br>**0** otherwise. | **LE** (Locally excited) |
+      | $S_{\text{part}}$ | 1 if $O_{S_1} < $`params.S_overlap` <br>0 otherwise. | CT (Charge Transfer) |
+      | $T_{\text{part}}$ | 1 if $O_{T_1} > $`params.T_overlap` <br>0 otherwise. | LE (Locally excited) |
 
 - _**Conjugation**_ <br />
     Computes conjugation in molecules 
