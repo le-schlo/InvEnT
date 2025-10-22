@@ -3,7 +3,7 @@
 This repository contains the code for the inverse design of organic photocatalysts for energy transfer catalysis as described in this paper: TBA [paper](TBA)
 
 <p align="center">
-  <img src="image.png" width="60%" />
+  <img src="image.jpg" width="60%" />
 </p>
 
 ## Installation
