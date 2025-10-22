@@ -132,7 +132,6 @@ def homo_lumo_mwfn(
             os.system(f"{path_to_xtb} input.xyz --molden --chrg {charge} --uhf {multiplicity} --verbose > xtb_output.log")
         homo_idx, lumo_idx = extract_homo_lumo_indices()
         generate_multiwfn_input(homo_idx, lumo_idx)
-        #path_to_multiwfn = '/home/employee/l_schl60/software/Multiwfn_3.7_bin_Linux_noGUI/Multiwfn' #Only for catalyst testing!!!!
         dist, hl_norm, hl_square = run_multiwfn(path_to_multiwfn)
         os.chdir('..')
         shutil.rmtree(dirname)
