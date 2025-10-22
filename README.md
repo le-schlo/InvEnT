@@ -32,7 +32,7 @@ To run the model execute
 ```
 reinvent -l logging.log config.toml
 ```
-An example config file with all run parameters can be found in `examples/config.toml`. A detailed description of all relevant parameters can be found in `examples/README.md`. The results will be saved to a csv file as specified in the config file under `summary_csv_prefix`.
+An example config file with all run parameters can be found in `examples/config.toml`. A detailed description of all relevant parameters can be found in [examples/README.md](examples/README.md). The results will be saved to a csv file as specified in the config file under `summary_csv_prefix`.
 
 ## Data
 The `data/` directory contains datasets for validating the triplet energy prediction, absorption wavelength prediction, and the ISC quantum yield. Moreover, the output of the generative models can be found in `data/generated_molecules/`.
