@@ -67,7 +67,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `weight`: Set weight of the component.
   - `params.dir4tempfiles`: Path to a temporary directory.
   - `params.path_to_xtb`: Path to the xtb executable.
-  - `params.path_to_multiwfn`: Path to the Multiwfn binary.
+  - `params.path_to_multiwfn`: Path to the Multiwfn executable.
   - `params.calculation_mode`: Set to `multiwfn_quick` (only singlet geometry used for FMOs) or `multiwfn` (both singlet and triplet states optimized).
   - `params.use_gfn2`: Set to `false` (optimization uses GFN-FF).
   - `params.aggregation_mode`: Choose between `formula` (weighted sum) and `threshold` (binary score).
