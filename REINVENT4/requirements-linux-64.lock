@@ -92,6 +92,7 @@ mmpdb==2.1
     # via reinvent (pyproject.toml)
 molvs==0.1.1
     # via reinvent (pyproject.toml)
+morfeus-ml==0.7.2
 mpmath==1.3.0
     # via sympy
 multiprocess==0.70.16
@@ -194,6 +195,7 @@ pydantic-core==2.18.1
     # via pydantic
 pygments==2.17.2
     # via sphinx
+pygmo==2.19.5
 pyparsing==3.1.2
     # via matplotlib
 pytest==8.1.1
