@@ -55,7 +55,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `name`: Set to name for scoring component, _e.g._, `"SQM_lambda_max"`
   - `weight`: set weight of the component in the overall score.
   - `params.tmp_dir`: Path to a temporary directory for storing intermediate files.
-  - `params.path_to_xtb`: Path to the directory containing the xtb binary.
+  - `params.path_to_xtb`: Path to the xtb executable.
   - `params.path_to_stda`: Path to the directory containing the xtb4stda binary.
   - `params.maximum_waiting_time`: Maximum waiting time for the geometry optimization in seconds.
   - `params.use_stddft`: Set to `false` to use stda instead of stddft for excited state calculations.
@@ -66,6 +66,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   - `name`: Set to `"Overlap_quick"`.
   - `weight`: Set weight of the component.
   - `params.dir4tempfiles`: Path to a temporary directory.
+  - `params.path_to_xtb`: Path to the xtb executable.
   - `params.path_to_multiwfn`: Path to the Multiwfn binary.
   - `params.calculation_mode`: Set to `multiwfn_quick` (only singlet geometry used for FMOs) or `multiwfn` (both singlet and triplet states optimized).
   - `params.use_gfn2`: Set to `false` (optimization uses GFN-FF).
