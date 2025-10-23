@@ -54,7 +54,7 @@ This set of parameters is optional and can be used to increase the diversity of 
   The semi-empirical excited state calculation component uses xtb and stda to calculate the maximum absorption wavelength of generated molecules.
   - `name`: Set to name for scoring component, _e.g._, `"SQM_lambda_max"`
   - `weight`: set weight of the component in the overall score.
-  - `params.tmp_dir`: Path to a temporary directory for storing intermediate files.
+  - `params.tmp_dir`: Name of a temporary directory for storing intermediate files. Since this folder gets created temporarily for intermediate files and deleted afterwards, it must be a non-existing directory. So, _e.g._, `/InvEnT/tmp/multiwfn_calcdir` where the directory `multiwfn_calcdir` gets created during the generative process and **can not** be present before running the code. The run will terminate if the provided path is an existing directory to prevent unintential deletion of folder.
   - `params.path_to_xtb`: Path to the xtb executable.
   - `params.path_to_stda`: Path to the directory containing the xtb4stda binary.
   - `params.maximum_waiting_time`: Maximum waiting time for the geometry optimization in seconds.
@@ -65,7 +65,7 @@ This set of parameters is optional and can be used to increase the diversity of 
     Computes the HOMO-LUMO overlap and estimates the nature of the excited state (CT or LE) using **xtb** and **Multiwfn**.
   - `name`: Set to `"Overlap_quick"`.
   - `weight`: Set weight of the component.
-  - `params.dir4tempfiles`: Path to a temporary directory.
+  - `params.dir4tempfiles`:Name of a temporary directory for storing intermediate files. Since this folder gets created temporarily for intermediate files and deleted afterwards, it must be a non-existing directory. So, _e.g._, `/InvEnT/tmp/multiwfn_calcdir` where the directory `multiwfn_calcdir` gets created during the generative process and **can not** be present before running the code. The run will terminate if the provided path is an existing directory to prevent unintential deletion of folder.
   - `params.path_to_xtb`: Path to the xtb executable.
   - `params.path_to_multiwfn`: Path to the Multiwfn executable.
   - `params.calculation_mode`: Set to `multiwfn_quick` (only singlet geometry used for FMOs) or `multiwfn` (both singlet and triplet states optimized).
