@@ -18,6 +18,7 @@ pip install --no-deps .
 ```
 
 The installation on a standard Linux machine takes approx. 2-3 minutes.
+The code is tested with python 3.10.
 
 Optional dependencies:
 - [stda](https://github.com/grimme-lab/std2/tree/v1.6.1) and [xtb4stda](https://github.com/grimme-lab/xtb4stda) <br />
