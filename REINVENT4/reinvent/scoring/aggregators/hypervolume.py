@@ -59,12 +59,26 @@ class HypervolumeCalculator:
 
 def _get_report_filename():
     '''
-    Get the report file name. If multiple stages are run, make sure that the most recent stage is taken
+    Get the report file name. If multiple stages are run, make sure that the most recent stage is taken. To get the correct summary_csv_prefix, the config file is reloaded, which is not a nice solution but successfull in most cases. It will just fail in instances where the directory is changed to a directory other than one level above the 
     '''
-    args = _parse_command_line()
-    reader = getattr(config_parse, f"read_{args.config_format}")
-    input_config = reader(args.config_filename)
-    report_file_basename = (input_config["parameters"]['summary_csv_prefix'])
+    files_in_dir = os.listdir()
+    found_toml = False
+    for files in files_in_dir:
+        if files.endswith(".toml"):
+            found_toml = True
+            break
+    if found_toml==False:
+        report_file_basename = "InvEnT_exploration"
+    else:
+        args = _parse_command_line()
+        reader = getattr(config_parse, f"read_{args.config_format}")
+        input_config = reader(args.config_filename)
+        try:
+            report_file_basename = (input_config["parameters"]['summary_csv_prefix'])
+        except:
+            print("When using the hypervolume in the aggregation function the current scores must be read. It was not possible to infer the correct config file. Please change the summary_csv_prefix in the config file to InvEnT_exploration.")
+            report_file_basename = None
+        
     files_in_dir = os.listdir()
     stage_number = 0
     for file in files_in_dir:
