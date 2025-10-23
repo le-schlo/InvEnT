@@ -103,7 +103,7 @@ transform.coef_se = 5
  [[stage.scoring.component.excitedstate.endpoint]]
  name = "Excited State lambda_max"
  weight = 1
- params.tmp_dir = '/tmp/mwfn_calcdir'
+ params.tmp_dir = '/InvEnT/tmp/mwfn_calcdir'
  params.path_to_xtb = 'PATH_TO_DIR/xtb'
  params.path_to_stda = 'PATH_TO_DIR/xtb4stda'
  params.maximum_waiting_time = 180
@@ -124,7 +124,7 @@ transform.coef_se = 5
  params.path_to_multiwfn = '/PATH_TO_DIR/Multiwfn_3.7_bin_Linux_noGUI/Multiwfn'
  params.calculation_mode = 'multiwfn_quick'
  params.aggregation_mode = 'formula'
- params.dir4tempfiles = '/tmp/mwfn_calcdir'
+ params.dir4tempfiles = '/InvEnT/tmp/mwfn_calcdir'
  params.use_gfn2 = false
  params.Singlet_param = 1.0
  params.S_overlap = 1.0
