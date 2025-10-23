@@ -11,7 +11,7 @@ For installation run
 ```
 git clone --recurse-submodules https://github.com/le-schlo/InvEnT.git
 
-conda install -c conda-forge xtb==6.7.1 morfeus-ml==0.7.2
+conda install -c conda-forge xtb==6.7.1
 cd REINVENT4/
 pip install -r requirements-linux-64.lock
 pip install --no-deps .
