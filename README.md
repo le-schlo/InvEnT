@@ -17,7 +17,7 @@ pip install -r requirements-linux-64.lock
 pip install --no-deps .
 ```
 
-The installation on a standard Linux machine takes approx. 2-3 minutes.
+The installation on a standard Linux machine takes approx. 2-3 minutes. <br />
 The code is tested with python 3.10.
 
 Optional dependencies:
