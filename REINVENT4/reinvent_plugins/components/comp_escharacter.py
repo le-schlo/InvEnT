@@ -94,10 +94,6 @@ class escharacter:
                     overlap_s1, dist_s1, overlap_t1, dist_t1 = homo_lumo_mwfn_quick(smi, use_gfn2=self.use_gfn2,
                                                                                     dirname=self.tmp_dir, path_to_multiwfn=self.path_to_multiwfn,
                                                                                     path_to_xtb=self.path_to_xtb)
-
-            elif self.run_mode == 'tblite':
-                raise NotImplemented
-
             else:
                 raise NotImplemented
 
