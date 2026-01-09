@@ -1,0 +1,3 @@
+xtb input.xyz --opt --gfnff --chrg 0 --verbose > xtb_output.log
+xtb4stda xtbopt.xyz --chrg 0 --verbose > xtb_output_xtb4stda.log
+stda -xtb -e 7 --chrg 0 > output_stda.out

@@ -1,0 +1,5 @@
+! wB97X-D3 def2-TZVPP def2/J RIJCOSX TIGHTSCF CPCM(ACETONITRILE)
+*xyzfile 0 3 input.xyz
+
+%maxcore 2500
+%pal nprocs 8 end

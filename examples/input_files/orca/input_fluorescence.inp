@@ -1,0 +1,12 @@
+! wB97X-D3 def2-TZVPP def2/J RIJCOSX TIGHTSCF ESD(FLUOR) CPCM(ACETONITRILE)
+%TDDFT  NROOTS  5
+        IROOT   1
+END
+%ESD    GSHESSIAN       "s0.hess"
+        ESHESSIAN       "s1.hess"
+        DOHT            TRUE
+END
+*xyzfile 0 1 input.xyz
+
+%maxcore 2500
+%pal nprocs 8 end

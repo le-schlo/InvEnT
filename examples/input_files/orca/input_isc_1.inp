@@ -1,0 +1,19 @@
+! wB97X-D3 def2-TZVPP def2/J RIJCOSX TIGHTSCF ESD(ISC) CPCM(ACETONITRILE)
+%TDDFT  NROOTS  5
+        SROOT   1
+        TROOT   1
+        TROOTSSL 1
+        DOSOC   TRUE
+END
+%ESD    ISCISHESS       "s1.hess"
+        ISCFSHESS       "t1.hess"
+        USEJ            TRUE
+        DOHT            TRUE
+        TEMP            77
+        DELE            5682
+        NPOINTS         100000
+END
+*xyzfile 0 1 input.xyz
+
+%maxcore 2000
+%pal nprocs 16 end

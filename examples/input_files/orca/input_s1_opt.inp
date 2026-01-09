@@ -1,0 +1,8 @@
+! wB97X-D3 def2-SVP def2/J RIJCOSX TIGHTOPT FREQ CPCM(ACETONITRILE)
+%tddft
+   NRoots 1
+   IRoot 1  
+end
+*xyzfile 0 1 input.xyz
+%maxcore 2500
+%pal nprocs 8 end
