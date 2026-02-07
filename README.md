@@ -1,6 +1,6 @@
 # Inverse Design of Organic Photocatalysts for Energy Transfer Catalysis
 
-This repository contains the code for the inverse design of organic photocatalysts for energy transfer catalysis as described in this paper: TBA [paper](TBA)
+This repository contains the code for the inverse design of organic photocatalysts for energy transfer catalysis as described in this [paper](https://doi.org/10.1021/jacs.5c20087).
 
 <p align="center">
   <img src="image.jpg" width="60%" />
