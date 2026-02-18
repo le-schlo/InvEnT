@@ -40,14 +40,16 @@ The `data/` directory contains datasets for validating the triplet energy predic
 
 ## Citation
 ```
-@article{Schlosser.2026,
-abstract = {The discovery of new organic photocatalysts (PCs) for energy transfer (EnT) catalysis remains a significant challenge, largely due to the vast and underexplored chemical space and the delicate balance of the photocatalytic properties. While transition-metal catalysts are effective, their high cost and environmental impact necessitate the development of metal-free alternatives. In this work, we present a hybrid inverse molecular design strategy that combines global exploration with targeted local optimization to discover highly efficient organic PCs. Our approach leverages a generative model, guided by machine learning predictions and semiempirical simulations, to efficiently navigate chemical space and identify promising molecular scaffolds. We demonstrate the utility of this strategy by rediscovering known PCs and, more importantly, exploring uncharted structural regions, leading to the identification of novel candidates with favorable photophysical properties. A subsequent local exploration stage, using quantum mechanical calculations, allows refinement of the properties as well as control of the synthetic complexity. The practical applicability of the approach is demonstrated by performing a local exploration of one of the identified scaffolds and successfully synthesizing four candidate PCs. We showcase their catalytic aptitude in three different EnT-mediated reactions, including a challenging aza-photocycloaddition, where one of our designed PCs achieved 90{\%} yield, a performance comparable to a state-of-the-art iridium-based catalyst. This study highlights the power of a data-driven inverse design framework to bridge computational discovery and experimental validation, accelerating the identification of novel PCs and expanding the scope of EnT catalysis.},
+@article{doi:10.1021/jacs.5c20087,
  author = {Schlosser, Leon and Rendel, Nils H. and Gemen, Julius and Glorius, Frank and Jorner, Kjell},
+ journal = {Journal of the American Chemical Society},
  year = {2026},
  title = {Inverse Molecular Design for the Discovery of Organic Energy Transfer Photocatalysts: Bridging Global and Local Chemical Space Exploration},
- pages = {6451--6461},
+ pages = {6451-6461},
  volume = {148},
- journal = {J. Am. Chem. Soc.},
- doi = {10.1021/jacs.5c20087}
+ number = {6},
+ doi = {10.1021/jacs.5c20087},
+ URL = {https://doi.org/10.1021/jacs.5c20087},
+ eprint = {https://doi.org/10.1021/jacs.5c20087}
 }
 ```
